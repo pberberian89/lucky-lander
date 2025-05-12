@@ -1,4 +1,6 @@
 // Main game file for the JavaScript Lunar Lander port
+import { Leaderboard } from './leaderboard.js';
+leaderboard = new Leaderboard();
 
 // --- Constants ---
 // Define constants here, similar to the Python version
