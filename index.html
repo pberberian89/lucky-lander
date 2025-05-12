@@ -21,8 +21,12 @@
       display: block;
     }
   </style>
+</head>
 
-  <!-- ✅ Firebase (App + Realtime Database) -->
+<body>
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- ✅ Firebase config + expose db to window -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
@@ -38,17 +42,10 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    // Make available globally for game.js
-    window.firebaseDB = db;
+    window.firebaseDB = getDatabase(app);
   </script>
-</head>
 
-<body>
-  <canvas id="gameCanvas"></canvas>
-
-  <!-- ✅ Main game logic (uses ES modules) -->
+  <!-- ✅ Game logic entry point -->
   <script type="module" src="game.js"></script>
 </body>
 </html>
