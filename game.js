@@ -1,5 +1,9 @@
 // Main game file for the JavaScript Lunar Lander port
 import { Leaderboard } from './leaderboard.js';
+import { SoundManager } from './sounds.js';       // ✅ Needed
+import { Lander } from './lander.js';             // ✅ If using Lander class
+import { Terrain } from './terrain.js';           // ✅ If using Terrain class
+import { Particle } from './particle.js';         // ✅ If using Particle class
 
 
 // --- Constants ---
