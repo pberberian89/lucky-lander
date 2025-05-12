@@ -4,7 +4,7 @@
 // const FUEL_CONSUMPTION_RATE = 0.2; // Example, ensure it's defined in game.js
 const FONT_NAME = "Hyperspace"; // Added for consistency with game.js
 
-class Lander {
+export class Lander {
     // Scoring Constants
     static BASE_LANDING_SCORE = 100;
     static PERFECT_BONUS = 500;

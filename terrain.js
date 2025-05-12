@@ -1,6 +1,6 @@
 // Terrain class for the JavaScript Lunar Lander port
 
-class Terrain {
+export class Terrain {
     constructor(total_width, screen_height, lander_w_size) {
         this.points = []; // List of {x, y} points defining terrain shape
         this.flat_zones = []; // List of [start_x, end_x, y] ranges for flat landing zones
