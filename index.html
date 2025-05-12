@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lunar Lander</title>
   <link rel="icon" type="image/png" href="favicon.png" />
+
   <style>
     @font-face {
       font-family: 'Hyperspace';
@@ -21,7 +22,7 @@
     }
   </style>
 
-  <!-- ✅ Firebase SDK (App + Realtime Database) -->
+  <!-- ✅ Firebase (App + Realtime Database) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
@@ -29,7 +30,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyAwdxOyih0VH3GRbW3lbPmIa4ECfOcPS14",
       authDomain: "lucky-lander.firebaseapp.com",
-      databaseURL: "https://lucky-lander-default-rtdb.firebaseio.com", 
+      databaseURL: "https://lucky-lander-default-rtdb.firebaseio.com",
       projectId: "lucky-lander",
       storageBucket: "lucky-lander.appspot.com",
       messagingSenderId: "300766452532",
@@ -39,24 +40,15 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Optional: Make available to other scripts
+    // Make available globally for game.js
     window.firebaseDB = db;
   </script>
 </head>
+
 <body>
   <canvas id="gameCanvas"></canvas>
 
-  <!-- Load JavaScript files (you can keep them as non-modules if they don’t use import/export) -->
-  <script src="leaderboard.js"></script>
-  <script src="particle.js"></script>
-  <script src="terrain.js"></script>
-  <script src="lander.js"></script>
-  <script src="sounds.js"></script>
-  <script src="game.js"></script>
-
-  <script>
-    // Initialize game
-    window.onload = initGame;
-  </script>
+  <!-- ✅ Main game logic (uses ES modules) -->
+  <script type="module" src="game.js"></script>
 </body>
 </html>
