@@ -18,6 +18,7 @@ const SAFE_LANDING_VY = 12; // User updated (Temporary for testing)
 const SAFE_LANDING_VX = 5;  // User updated (Temporary for testing)
 const MAX_SAFE_ROTATION = 4; // User updated (Temporary for testing)
 const LOW_FUEL_THRESHOLD = 200;
+const FONT_NAME = "Hyperspace";
 
 // Asset paths (relative to the web-lunar-lander directory)
 const ASSETS_FOLDER = "assets";
