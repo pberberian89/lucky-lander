@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunar Lander</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @font-face {
+            font-family: 'Hyperspace';
+            src: url('assets/Hyperspace.ttf') format('truetype');
+        }
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            background-color: black;
+            font-family: 'Hyperspace', Arial, sans-serif; /* Apply fallback */
+        }
+        canvas {
+            display: block; /* Remove extra space below canvas */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Load JavaScript files -->
+    <script src="leaderboard.js"></script>
+    <script src="particle.js"></script>
+    <script src="terrain.js"></script>
+    <script src="lander.js"></script>
+    <script src="sounds.js"></script>
+    <script src="game.js"></script>
+
+    <script>
+        // Initialize the game when the window loads
+        window.onload = initGame;
+    </script>
+</body>
+</html>
