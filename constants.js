@@ -13,6 +13,7 @@ export const SAFE_LANDING_VY = 12;
 export const SAFE_LANDING_VX = 5;
 export const MAX_SAFE_ROTATION = 4;
 export const LOW_FUEL_THRESHOLD = 200;
+export const PARTICLE_GRAVITY = 15; // pixels per second squared
 
 // Assets
 export const ASSETS_FOLDER = "assets";

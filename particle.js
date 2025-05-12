@@ -1,10 +1,10 @@
 // Particle class for the JavaScript Lunar Lander port
-
+import { PARTICLE_GRAVITY } from './constants.js';
 // --- Constants ---
  // Gravity affecting particles (pixels per second, per second)
 
 export class Particle {
-    static PARTICLE_GRAVITY = 15;
+    // static PARTICLE_GRAVITY = 15;
     constructor(x, y, vx, vy, lifetime, start_color, end_color, start_size, end_size) {
         this.x = x;
         this.y = y;
