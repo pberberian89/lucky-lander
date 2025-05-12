@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunar Lander</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        @font-face {
-            font-family: 'Hyperspace';
-            src: url('assets/Hyperspace.ttf') format('truetype');
-        }
-        body {
-            margin: 0;
-            overflow: hidden; /* Prevent scrollbars */
-            background-color: black;
-            font-family: 'Hyperspace', Arial, sans-serif; /* Apply fallback */
-        }
-        canvas {
-            display: block; /* Remove extra space below canvas */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lunar Lander</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    @font-face {
+      font-family: 'Hyperspace';
+      src: url('assets/Hyperspace.ttf') format('truetype');
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      font-family: 'Hyperspace', Arial, sans-serif;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+
+  <!-- ✅ Firebase SDK (App + Realtime Database) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwdxOyih0VH3GRbW3lbPmIa4ECfOcPS14",
+      authDomain: "lucky-lander.firebaseapp.com",
+      databaseURL: "https://lucky-lander-default-rtdb.firebaseio.com", 
+      projectId: "lucky-lander",
+      storageBucket: "lucky-lander.appspot.com",
+      messagingSenderId: "300766452532",
+      appId: "1:300766452532:web:a2fe8f9adeaa103e6a6361"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Optional: Make available to other scripts
+    window.firebaseDB = db;
+  </script>
 </head>
 <body>
-    <canvas id="gameCanvas"></canvas>
+  <canvas id="gameCanvas"></canvas>
 
-    <!-- Load JavaScript files -->
-    <script src="leaderboard.js"></script>
-    <script src="particle.js"></script>
-    <script src="terrain.js"></script>
-    <script src="lander.js"></script>
-    <script src="sounds.js"></script>
-    <script src="game.js"></script>
+  <!-- Load JavaScript files (you can keep them as non-modules if they don’t use import/export) -->
+  <script src="leaderboard.js"></script>
+  <script src="particle.js"></script>
+  <script src="terrain.js"></script>
+  <script src="lander.js"></script>
+  <script src="sounds.js"></script>
+  <script src="game.js"></script>
 
-    <script>
-        // Initialize the game when the window loads
-        window.onload = initGame;
-    </script>
+  <script>
+    // Initialize game
+    window.onload = initGame;
+  </script>
 </body>
 </html>

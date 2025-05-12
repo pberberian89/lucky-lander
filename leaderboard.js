@@ -1,5 +1,3 @@
-// Leaderboard class for the JavaScript Lunar Lander port
-
 class HighScore {
     constructor(initials, score) {
         this.initials = initials;
@@ -8,57 +6,86 @@ class HighScore {
 }
 
 class Leaderboard {
-    constructor(filename = "high_scores") { // Use a key name for localStorage
-        this.localStorageKey = filename;
+    constructor(storageKey = "high_scores") {
+        this.localStorageKey = storageKey;
         this.scores = [];
+        this.db = window.firebaseDB || null;
         this.load_scores();
     }
 
+    // 🔽 Load from Firebase first, fallback to localStorage
     load_scores() {
-        /** Load high scores from localStorage, or create empty list if not found. */
+        if (this.db) {
+            const scoresRef = firebase.database().ref('highscores');
+            scoresRef.once('value', (snapshot) => {
+                const scores = [];
+                snapshot.forEach((child) => {
+                    const data = child.val();
+                    if (data && data.initials && typeof data.score === 'number') {
+                        scores.push(new HighScore(data.initials, data.score));
+                    }
+                });
+                scores.sort((a, b) => b.score - a.score);
+                this.scores = scores.slice(0, 10);
+                this.save_scores(); // cache to localStorage
+            }, (error) => {
+                console.error("Firebase load error:", error);
+                this.load_from_local();
+            });
+        } else {
+            this.load_from_local();
+        }
+    }
+
+    load_from_local() {
         try {
             const data = localStorage.getItem(this.localStorageKey);
             if (data) {
-                const parsedData = JSON.parse(data);
-                // Ensure loaded data matches HighScore structure
-                if (Array.isArray(parsedData)) {
-                     this.scores = parsedData.map(score => new HighScore(score.initials, score.score));
-                } else {
-                     this.scores = [];
+                const parsed = JSON.parse(data);
+                if (Array.isArray(parsed)) {
+                    this.scores = parsed.map(s => new HighScore(s.initials, s.score));
                 }
-            } else {
-                this.scores = [];
             }
         } catch (e) {
-            console.error("Error loading scores from localStorage:", e);
-            this.scores = [];
+            console.error("LocalStorage load error:", e);
         }
     }
 
     save_scores() {
-        /** Save high scores to localStorage. */
         try {
             localStorage.setItem(this.localStorageKey, JSON.stringify(this.scores));
         } catch (e) {
-            console.error("Error saving scores to localStorage:", e);
+            console.error("LocalStorage save error:", e);
         }
     }
 
     add_score(initials, score) {
-        /** Add a new score to the leaderboard and maintain top 10. */
-        // Basic validation
         if (typeof initials !== 'string' || initials.length === 0 || typeof score !== 'number' || score < 0) {
-             console.warn("Invalid score data provided:", initials, score);
-             return;
+            console.warn("Invalid score data:", initials, score);
+            return;
         }
-        this.scores.push(new HighScore(initials, score));
-        this.scores.sort((a, b) => b.score - a.score); // Sort descending
-        this.scores = this.scores.slice(0, 10); // Keep only top 10
+
+        const newEntry = new HighScore(initials, score);
+
+        // Save to Firebase (if available)
+        if (this.db) {
+            const scoresRef = firebase.database().ref('highscores');
+            const newScoreRef = firebase.database().push(scoresRef);
+            newScoreRef.set({
+                initials: newEntry.initials,
+                score: newEntry.score,
+                timestamp: Date.now()
+            });
+        }
+
+        // Save to local list
+        this.scores.push(newEntry);
+        this.scores.sort((a, b) => b.score - a.score);
+        this.scores = this.scores.slice(0, 10);
         this.save_scores();
     }
 
     get_scores() {
-        /** Return the current high scores. */
         return this.scores;
     }
 }
