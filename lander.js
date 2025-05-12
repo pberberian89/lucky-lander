@@ -2,7 +2,10 @@
 
 // Constants from game.js that Lander uses (ensure these are defined in game.js and accessible)
 // const FUEL_CONSUMPTION_RATE = 0.2; // Example, ensure it's defined in game.js
-const FONT_NAME = "Hyperspace"; // Added for consistency with game.js
+import {
+  FONT_NAME,
+  GAME_SPEED_FACTOR,
+} from './constants.js';
 
 export class Lander {
     // Scoring Constants

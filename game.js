@@ -4,6 +4,15 @@ import { SoundManager } from './sounds.js';       // ✅ Needed
 import { Lander } from './lander.js';             // ✅ If using Lander class
 import { Terrain } from './terrain.js';           // ✅ If using Terrain class
 import { Particle } from './particle.js';         // ✅ If using Particle class
+import {
+  FONT_NAME,
+  GAME_SPEED_FACTOR,
+  SAFE_LANDING_VY,
+  SAFE_LANDING_VX,
+  MAX_SAFE_ROTATION,
+  LANDER_IMG_PATH,
+  FUEL_CONSUMPTION_RATE
+} from './constants.js';
 
 
 // --- Constants ---
@@ -11,19 +20,19 @@ import { Particle } from './particle.js';         // ✅ If using Particle class
 const FPS = 60;
 const GRAVITY = .20 * 60; // Scaled for per-second update in JS - User updated
 const THRUST = .65 * 60; // Scaled for per-second update in JS - User updated
-const FUEL_CONSUMPTION_RATE = 35; // User updated
+//const FUEL_CONSUMPTION_RATE = 35; // User updated
 const ROTATION_SPEED = 100; // Degrees per second for rotation
-const GAME_SPEED_FACTOR = 1.25; // User updated - Preserving this value.
-const SAFE_LANDING_VY = 12; // User updated (Temporary for testing)
-const SAFE_LANDING_VX = 5;  // User updated (Temporary for testing)
-const MAX_SAFE_ROTATION = 4; // User updated (Temporary for testing)
+//const GAME_SPEED_FACTOR = 1.25; // User updated - Preserving this value.
+//const SAFE_LANDING_VY = 12; // User updated (Temporary for testing)
+//const SAFE_LANDING_VX = 5;  // User updated (Temporary for testing)
+//const MAX_SAFE_ROTATION = 4; // User updated (Temporary for testing)
 const LOW_FUEL_THRESHOLD = 200;
-const FONT_NAME = "Hyperspace";
+//const FONT_NAME = "Hyperspace";
 
 // Asset paths (relative to the web-lunar-lander directory)
 const ASSETS_FOLDER = "assets";
 // const FONT_NAME = "Hyperspace"; // Font name defined in CSS - Declared in lander.js
-const LANDER_IMG_PATH = ASSETS_FOLDER + "/lander.png";
+//const LANDER_IMG_PATH = ASSETS_FOLDER + "/lander.png";
 // Sound paths are now managed by SoundManager in sounds.js
 
 // --- Game Variables ---
