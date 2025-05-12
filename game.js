@@ -524,3 +524,4 @@ function drawGameOverScreen() {
 
 // --- Start the game ---
 window.onload = initGame; // This is already set in index.html
+window.soundManager = soundManager;
