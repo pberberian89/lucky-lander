@@ -109,6 +109,7 @@ async function initGame() {
     canvas.height = window.innerHeight;
 
     soundManager = new SoundManager();
+    window.soundManager = soundManager;
 
     try {
         await loadGameAssets();
