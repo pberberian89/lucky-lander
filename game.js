@@ -303,6 +303,7 @@ keys.ArrowLeft = false;
         lander.reset_thrust();
     }
     soundManager.stopThrustSound();
+    soundManager.playSound('start');
     landingMessageText = ""; 
     waitingForContinue = false;
     lowFuelSoundPlayed = false;
