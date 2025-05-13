@@ -333,7 +333,8 @@ function handleKeyDown(event) {
 
         keys.Space = false; 
         lander.reset_thrust(); 
-        soundManager.stopThrustSound(); 
+        soundManager.stopThrustSound();
+        soundManager.playSound('start'); 
 
         terrain.reset(); 
         lander.reset(lander.fuel, terrain); 
