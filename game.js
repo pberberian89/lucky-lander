@@ -317,7 +317,7 @@ function handleKeyDown(event) {
     if (titleScreen) {
         if (event.code === 'Space') {
             titleScreen = false;
-            soundManager.playSound('start');
+            //soundManager.playSound('start');
             resetGameStatesForNewAttempt();
             totalScore = 0;
             currentAttemptScore = 0;
