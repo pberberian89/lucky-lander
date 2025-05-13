@@ -298,7 +298,7 @@ function resizeCanvas() {
 
 function resetGameStatesForNewAttempt() {
     keys.Space = false;
-keys.ArrowLeft = false;
+    keys.ArrowLeft = false;
     keys.ArrowRight = false;
     if (lander) {
         lander.reset_thrust();
@@ -317,12 +317,13 @@ function handleKeyDown(event) {
     if (titleScreen) {
         if (event.code === 'Space') {
             titleScreen = false;
-            //soundManager.playSound('start');
+            
             resetGameStatesForNewAttempt();
             totalScore = 0;
             currentAttemptScore = 0;
             if(terrain) terrain.reset(); 
             if(lander) lander.reset(2000, terrain); 
+            soundManager.playSound('start');
             soundManager.startMusic(); 
         }
     } else if (waitingForContinue && (event.code === 'KeyC' || event.key.toLowerCase() === 'c')) {
@@ -334,7 +335,7 @@ function handleKeyDown(event) {
         keys.Space = false; 
         lander.reset_thrust(); 
         soundManager.stopThrustSound();
-        soundManager.playSound('start'); 
+        //soundManager.playSound('start'); 
 
         terrain.reset(); 
         lander.reset(lander.fuel, terrain); 
